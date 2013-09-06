@@ -1,8 +1,17 @@
+<% if @errors.any? %>
+  <% @errors.each do |key, value| %>
+    <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= key %>: <%= value[0] %>
+    </div>
+  <% end %>
+<% end %>
+
 <h3>Your awesome event is about to be created!</h3>
 <form action="/events/create" method="post">
-  <input type="text" name="new_event[organizer_name]" placeholder="Organizer's name">
-  <input type="email" name="new_event[organizer_email]" placeholder="Organizer's email">
-  <input type="text" name="new_event[title]" placeholder="Event Title">
+  <input type="text" name="new_event[organizer_name]" placeholder = "Organizer name here" value=<%= @preserve_previous_event["organizer_name"] %>>
+  <input type="email" name="new_event[organizer_email]" placeholder = "Organizer email here" value=<%= @preserve_previous_event["organizer_email"] %>>
+  <input type="text" name="new_event[title]" placeholder = "Event title here" value=<%= @preserve_previous_event["title"] %>>
   <input type="date" name="new_event[date]" value="date">
   <input type="submit" value="Create your event!">
 </form>

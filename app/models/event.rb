@@ -5,8 +5,10 @@ class Event < ActiveRecord::Base
   validate :future_date
 
   def future_date
-    if (self.date - Date.today) < 0
-      errors.add(:date, "Date cannot be in the past")
+    unless self.date == nil
+    if self.date < Date.today
+      errors.add(:date, "Sorry, events can't be in the past")
+    end
     end
   end
 
